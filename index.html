@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basurcan - Yakında</title>
     <style>
-        body { margin: 0; height: 100vh; display: flex; align-items: center; justify-content: center; background: #1a1a1a; color: white; font-family: sans-serif; }
-        .box { text-align: center; border: 1px solid #333; padding: 50px; border-radius: 10px; background: #222; }
+        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #1a1a1a; color: white; font-family: sans-serif; }
+        .box { text-align: center; border: 1px solid #333; padding: 50px; border-radius: 10px; background: #222; max-width: 80%; }
         h1 { font-size: 3rem; margin: 0; letter-spacing: 2px; }
         p { color: #888; margin-top: 10px; }
+        /* Fotoğraf ayarı */
+        .promo-img { 
+            width: 100%; 
+            max-width: 400px; /* Fotoğrafın çok devasa olmaması için */
+            margin-top: 20px; 
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
     </style>
 </head>
 <body>
     <div class="box">
         <h1>YAKINDA...</h1>
         <p>Tüm basurları basurcan.com.tr adresimize bekleriz. Yakında yayındayız... Ekstra: basurcan.info</p>
+        
+        <img src="fotoğraf-adı.jpg" alt="Basurcan" class="promo-img">
     </div>
 </body>
 </html>
