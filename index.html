@@ -3,28 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basurcan - Yakında</title>
+    <title>Basurcan - Yakında Yayındayız</title>
     <style>
-        body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #1a1a1a; color: white; font-family: sans-serif; }
-        .box { text-align: center; border: 1px solid #333; padding: 50px; border-radius: 10px; background: #222; max-width: 80%; }
-        h1 { font-size: 3rem; margin: 0; letter-spacing: 2px; }
-        p { color: #888; margin-top: 10px; }
-        /* Fotoğraf ayarı */
-        .promo-img { 
-            width: 100%; 
-            max-width: 400px; /* Fotoğrafın çok devasa olmaması için */
-            margin-top: 20px; 
+        /* Genel Ayarlar ve Renk Paleti */
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #0088cc; /* Telegram Mavisi Tonu */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #333;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Üst Menü (Navbar) */
+        header {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Ana İçerik */
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero (Karşılama) Bölümü */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
             border-radius: 8px;
-            border: 1px solid #444;
+            border: 1px solid var(--border-color);
+        }
+
+        /* SSS (Sıkça Sorulan Sorular) Bölümü */
+        .faq-section {
+            margin-bottom: 40px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        details {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            border-color: var(--primary-color);
+        }
+
+        summary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none; /* Safari için */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* Chrome/Edge için varsayılan oku gizle */
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg); /* Açılınca X şeklini alır */
+        }
+
+        .faq-content {
+            margin-top: 15px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        /* Alt Bilgi (Footer) ve Telegram İletişim */
+        footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .telegram-contact {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.3s;
+        }
+
+        .telegram-contact:hover {
+            transform: translateY(-3px);
+        }
+
+        .telegram-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+        }
+
+        .telegram-text {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            .hero {
+                padding: 20px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>YAKINDA...</h1>
-        <p>Tüm basurları basurcan.com.tr adresimize bekleriz. Yakında yayındayız... Ekstra: basurcan.info</p>
+
+    <header>
+        <a href="#" class="logo">BASURCAN</a>
+        <nav>
+            <ul>
+                <li><a href="#">Ana Sayfa</a></li>
+                <li><a href="#sss">Hakkında</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>YAKINDA...</h1>
+            <p>Tüm basurları basurcan.com.tr ve basurcan.online adresimize bekleriz. Altyapı çalışmalarımız devam ediyor, çok yakında yayındayız!</p>
+            <img src="basur.jpg" alt="Basurcan Görsel" class="hero-img">
+        </section>
+
+        <section id="sss" class="faq-section">
+            <div style="text-align: center;"><h2>Sıkça Sorulan Sorular</h2></div>
+
+            <details>
+                <summary>Basur (Hemoroit) Nedir?</summary>
+                <div class="faq-content">
+                    Basur, makat bölgesindeki damarların şişmesi ve genişlemesi sonucu oluşan bir rahatsızlıktır. İç ve dış olmak üzere ikiye ayrılır ve genellikle yaşam kalitesini düşüren semptomlarla kendini gösterir.
+                </div>
+            </details>
+
+            <details>
+                <summary>Neden Olur? Sebepleri Nelerdir?</summary>
+                <div class="faq-content">
+                    En yaygın sebepleri arasında kronik kabızlık, lifli gıdaların yetersiz tüketimi, uzun süre oturarak çalışmak, aşırı kilo ve genetik yatkınlık yer almaktadır. Ağır kaldırmak da basuru tetikleyebilir.
+                </div>
+            </details>
+
+            <details>
+                <summary>Yan Etkileri ve Belirtileri Nelerdir?</summary>
+                <div class="faq-content">
+                    Kanama (özellikle tuvalet kağıdında görülen parlak kırmızı kan), kaşıntı, ağrı, şişlik ve otururken hissedilen rahatsızlık en belirgin yan etkileridir.
+                </div>
+            </details>
+
+            <details>
+                <summary>Nasıl Korunulur?</summary>
+                <div class="faq-content">
+                    Bol su içmek, lifli gıdalarla (sebze, meyve, tam tahıllar) beslenmek, düzenli egzersiz yapmak ve tuvalet ihtiyacını ertelememek en etkili korunma yöntemleridir.
+                </div>
+            </details>
+        </section>
+    </main>
+
+    <footer id="iletisim">
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Bize Ulaşın</p>
         
-        <img src="basur.jpg" alt="Basurcan" class="promo-img">
-    </div>
+        <a href="https://t.me/gruptemsilcisi" target="_blank" class="telegram-contact">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram İletişim" class="telegram-icon">
+            <span class="telegram-text">@gruptemsilcisi</span>
+        </a>
+    </footer>
+
 </body>
 </html>
